@@ -34,7 +34,7 @@ static void	get_base(t_data *data)
 void	ft_putnum_base(long long num, t_data *data)
 {
 	get_base(data);
-	if (num < 0)
+	if (num < 0 && data->lbase != BASE_16)
 	{
 		data->n_chars += write(1, "-", 1);
 		num = -num;

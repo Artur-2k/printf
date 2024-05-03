@@ -19,8 +19,11 @@ void	ft_putchar(char c, t_data *data)
 
 void	ft_putstr(char *s, t_data *data)
 {
-	if (!s || !(*s))
+	if (!s)
+	{
+		data->n_chars += write(1, "(null)", 6);
 		return ;
+	}
 	while (*s)
 	{
 		data->n_chars += write(1, s, 1);

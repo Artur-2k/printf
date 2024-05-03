@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a 
+NAME = libftprintf.a
 SRCS = ft_printf.c ft_putchars.c ft_putnum_base.c ft_putptr.c
 OBJS = $(SRCS:.c=.o)
 CC = cc
@@ -19,6 +19,7 @@ DEPS = ft_printf.h
 LIBFT = libft.a
 LIBFT_PATH = ./libft/libft.a
 LIBFT_DIR = ./libft
+
 .SILENT :
 
 all: $(NAME)
@@ -33,9 +34,9 @@ $(NAME): $(OBJS) $(LIBFT)
 
 $(LIBFT):
 	make --silent -C $(LIBFT_DIR)
-	
+
 clean:
-	make clean -C $(LIBFT_DIR)
+	make --silent clean -C $(LIBFT_DIR)
 	$(RM) $(OBJS)
 
 fclean: clean

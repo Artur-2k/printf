@@ -37,7 +37,7 @@ static void	get_specifier(t_data *data)
 			ft_putnum_base((long long)va_arg(data->ap, unsigned int), data);
 	}
 	else if (data->specifier == 'p')
-		ft_putptr((unsigned long)va_arg(data->ap, void *), data);
+		ft_putptr(va_arg(data->ap, void *), data);
 }
 
 int	ft_printf(const char *fmt, ...)

@@ -44,7 +44,7 @@ typedef struct s_data
 void		ft_putnum_base(long long num, t_data *data);
 void		ft_putstr(char *s, t_data *data);
 void		ft_putchar(char c, t_data *data);
-void	ft_putptr(unsigned long ptr, t_data *data);
+void		ft_putptr(void *ptr, t_data *data);
 int			ft_printf(const char *fmt, ...);
 
 #endif
