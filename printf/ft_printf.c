@@ -6,7 +6,7 @@
 /*   By: artuda-s <artuda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 17:37:48 by artuda-s          #+#    #+#             */
-/*   Updated: 2024/04/30 19:12:42 by artuda-s         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:09:10 by artuda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 // cdi		-> int
 // s		-> char *
 
-
 #include "ft_printf.h"
 
-void	get_specifier(t_data *data)
+static void	get_specifier(t_data *data)
 {
 	if (data->specifier == '%')
 		ft_putchar('%', data);
@@ -30,18 +29,15 @@ void	get_specifier(t_data *data)
 		ft_putstr(va_arg(data->ap, char *), data);
 	else if (ft_strchr("di", data->specifier))
 		ft_putnum_base((long long)va_arg(data->ap, int), data);
-	else if (data->specifier == 'p')
-	{
-		data->n_chars += write(1, "0x", 2);
-		ft_putnum_base((unsigned long)va_arg(data->ap, void *), data);
-	}
-	else if ("xXu")
+	else if (ft_strchr("xXu", data->specifier))
 	{
 		if (data->specifier == 'X')
 			ft_putnum_base((long long)va_arg(data->ap, unsigned int), data);
 		else
 			ft_putnum_base((long long)va_arg(data->ap, unsigned int), data);
 	}
+	else if (data->specifier == 'p')
+		ft_putptr((unsigned long)va_arg(data->ap, void *), data);
 }
 
 int	ft_printf(const char *fmt, ...)
@@ -58,8 +54,6 @@ int	ft_printf(const char *fmt, ...)
 		{
 			++fmt;
 			data.specifier = *fmt;
-			if (*fmt == 'p' && va_arg(data.ap, void *) == NULL)
-				return -1;
 			get_specifier(&data);
 		}
 		else
