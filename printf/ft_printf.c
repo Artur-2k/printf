@@ -30,12 +30,7 @@ static void	get_specifier(t_data *data)
 	else if (ft_strchr("di", data->specifier))
 		ft_putnum_base((long long)va_arg(data->ap, int), data);
 	else if (ft_strchr("xXu", data->specifier))
-	{
-		if (data->specifier == 'X')
-			ft_putnum_base((long long)va_arg(data->ap, unsigned int), data);
-		else
-			ft_putnum_base((long long)va_arg(data->ap, unsigned int), data);
-	}
+		ft_putnum_base((long long)va_arg(data->ap, unsigned int), data);
 	else if (data->specifier == 'p')
 		ft_putptr(va_arg(data->ap, void *), data);
 }
